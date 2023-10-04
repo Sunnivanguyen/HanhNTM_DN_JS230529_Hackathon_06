@@ -91,8 +91,8 @@ class QuestionController {
 
     if (!category) {
       connection.query(
-        "SELECT * FROM `question` WHERE `category_id` = ?",
-        [req.params.id],
+        "SELECT * FROM `question` WHERE `level` = ? AND `limit` = ?",
+        [level, limit],
         function (err, data, fields) {
           res.status(200).json({
             status: "success",
@@ -101,7 +101,27 @@ class QuestionController {
         }
       );
     } else if (!level) {
+      connection.query(
+        "SELECT * FROM `question` WHERE `category_id` = ? AND `limit` = ?",
+        [category, limit],
+        function (err, data, fields) {
+          res.status(200).json({
+            status: "success",
+            data: data,
+          });
+        }
+      );
     } else if (!limit) {
+      connection.query(
+        "SELECT * FROM `question` WHERE `category_id` = ? AND `level`= ?",
+        [category, level],
+        function (err, data, fields) {
+          res.status(200).json({
+            status: "success",
+            data: data,
+          });
+        }
+      );
     }
   }
 }
