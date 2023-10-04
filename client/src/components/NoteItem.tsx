@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Edit } from "./Edit";
 const NoteItem: React.FC<{
   id: number;
   text: string;
@@ -21,7 +21,7 @@ const NoteItem: React.FC<{
       <h3>{text}</h3>
       <div
         style={{
-          width: "70px",
+          width: "100px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -29,10 +29,11 @@ const NoteItem: React.FC<{
       >
         <input
           type="checkbox"
-          style={{ fontSize: "24px" }}
+          style={{ height: "20px", width: "20px", accentColor: "#ebb002" }}
           value={`${isDone}`}
           onChange={(e) => console.log("ok")}
         ></input>
+        <Edit />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
